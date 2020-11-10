@@ -124,7 +124,7 @@ $(()=> {
             console.log(key);
             console.log(obj.name); 
 
-            $("#tblOne > tbody").append('<tr> <td>'+obj.name+'</td><td>'+ obj.email+'</td><td> <button class="btn btn-primary edit"type="button">Edit</button></td><td><button class="btn btn-danger remove" id="'+obj._id+' "type="button">Remove</button></td></tr>');
+            $("#tblOne > tbody").append('<tr> <td>'+obj.name+'</td><td>'+ obj.email+'</td><td> <button class="btn btn-primary edit" id="'+obj._id+' " type="button">Edit</button></td><td><button class="btn btn-danger remove" id="'+obj._id+' "type="button">Remove</button></td></tr>');
         
      
         })
@@ -134,8 +134,23 @@ $(()=> {
   })
 
   // jQuery button click event to edit a row. 
-  $('#tblOne').on('click', '.edit', function () {
-      $(this).hide();
+  $('#tblOne').on('click', '.edit', function (e) {
+//      alert(e.target.id);
+      $.get(`/editUser/${e.target.id}`,(user,status,xhr)=>{
+       // console.log(user);
+        if(user){
+             $('#name').val(user.name)
+             $('#email').val(user.email)
+
+             // Change text of button element
+            $("#head").html("EDIT USER");
+           
+            
+             // Change text of button element
+            $("#addUser").html("UPDATE");
+           
+        }
+      })
   })
 
   // jQuery button click event to remove a row. 
