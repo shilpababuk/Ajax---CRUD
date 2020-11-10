@@ -1,5 +1,5 @@
 const { response } = require("express");
-const { Db, ObjectID } = require("mongodb");
+const { Db, ObjectID, ObjectId } = require("mongodb");
 var db = require('../config/connection')
 var collection = require('../config/collection')
 module.exports = {
@@ -17,4 +17,20 @@ module.exports = {
             resolve(users)
         })
     },
+    // getUserDetails: (userId)=>{
+    //     return new Promise(async(resolve,reject)=>{
+    //         db.get.collection(collection.USER_COLLECTION).findOne({_id: ObjectId(userId)}).then((user)=>{
+    //             resolve(user)
+    //         })
+    //     })
+    // }
+
+    deleteUser: (userId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.USER_COLLECTION).removeOne({_id:ObjectId(userId)}).then((response)=>{
+                console.log(response);
+                resolve(response)
+            })
+        })
+    }
 }

@@ -1,6 +1,6 @@
 <section>
     <div class="row">
-        <div class="col-md-6 mt-5" style="text-align: center;">
+        <div class="col-md-4 mt-5" style="text-align: center;">
             <h4 style="text-align: center;">ADD USER</h4>
             <form action="/adduser"  id="addUserForm" method="POST">
                 <input type="text" id="name" name="name" placeholder="User Name"><br><br>
@@ -9,11 +9,24 @@
             </form>
              <div id="alertDiv" class="alert alert-success" role="alert" style="margin-top:20px"></div>
         </div>
-        <div class="col-md-6 mt-5">
+        <div class="col-md-8 mt-5">
              <h2> Users</h2>
-            <div style="height:590px; overflow:scroll;">
+            {{!-- <div style="height:590px; overflow:scroll;">
                 <ul class="list-group" id="listGroup" style="margin-top: 30px"></ul>  
-            </div>
+            </div> --}}
+            <table id="tblOne" class="tblOne">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                 </tr>
+                 
+                <tr class="table-group" id="tableGroup" style="margin-top: 30px">
+                    
+                </tr>
+                
+            </table>
         </div>
     </div>
 </section>
