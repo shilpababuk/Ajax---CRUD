@@ -17,13 +17,28 @@ module.exports = {
             resolve(users)
         })
     },
-    // getUserDetails: (userId)=>{
-    //     return new Promise(async(resolve,reject)=>{
-    //         db.get.collection(collection.USER_COLLECTION).findOne({_id: ObjectId(userId)}).then((user)=>{
-    //             resolve(user)
-    //         })
-    //     })
-    // }
+
+    getUserDetails: (userId)=>{
+        return new Promise(async(resolve,reject)=>{
+            db.get().collection(collection.USER_COLLECTION).findOne({_id: ObjectId(userId)}).then((user)=>{
+                resolve(user)
+            })
+        })
+    },
+
+    updateUser: (userId, userDetails) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.USER_COLLECTION)
+                .updateOne({ _id: objectId(userId) }, {
+                    $set: {
+                        name: userDetails.name,
+                       email: userDetails.email
+                    }
+                }).then((response)=>{
+                    resolve()
+                })
+        })
+    },
 
     deleteUser: (userId)=>{
         return new Promise((resolve,reject)=>{

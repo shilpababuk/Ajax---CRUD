@@ -24,14 +24,28 @@ router.get('/allUsers',(req, res)=>{
   })
 });
 
-// router.get('/edit-user:id',(req,res)=>{
+// router.get('/editUser/:id',(req,res)=>{
 //   let userId=req.params.id
-//   console.log(userId);
+//  // console.log(userId);
 //   userHelper.getUserDetails().then((user)=>{
 //     console.log(user);
-//     res.render('/edit-user')
+//     res.send(user);
 //   })
 // })
+
+router.get('/editUser/:id', async (req, res) => {
+  let user = await userHelper.getUserDetails(req.params.id)
+  console.log(user);
+  res.send(user)
+});
+
+router.post('/editUser/:id', (req, res) => {
+  // console.log(req.params.id);
+  let id=req.params.id
+  userHelper.updateUser(req.params.id, req.body).then(() => {
+    res.redirect('/admin')
+  })
+})
 
 router.get('/deleteUser/:id',(req,res)=>{
   console.log(req.params.id);
